@@ -1,0 +1,259 @@
+<!DOCTYPE>
+<html>
+   <head>
+     <title>Smart Chat Bot</title>
+       <script type="text/javascript" src="artyom.js"></script>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   </head>
+
+   <body>
+<div class="container">
+  <h1 class="flow-text center">Ola, seja bem vindo</h1>
+  <div class="row">
+
+      <form class="col s12" name="meu_form" method="post">
+ <div class="card-panel">
+         <div class="row">
+           <div class="input-field col s12">
+             <textarea id="nomeid"  class="materialize-textarea"></textarea>
+             <label for="nomeid">Em que estas pensando...</label>
+           </div>
+           <a class="btn btn-large waves-effect waves-light red right" type="submit" onclick="Enviar();"><i class="material-icons">chat_bubble_outline</i></a>
+
+           </div>
+         </div>
+      </form>
+
+    <div id="aqui">  </div>
+  </div>
+</div>
+
+
+         <script>
+         artyom.initialize({
+           lang: 'pt-PT',
+           continuous: false,
+           debug: true,
+           liste: true
+         });
+
+
+         var voices = artyom.getVoices();
+
+   for(var i = 0;i < voices.length;i++){
+       var voice = voices[i];
+       console.log(voice.name);
+   }
+         function Enviar() {
+
+
+             var nome = document.getElementById("nomeid");
+
+              var bot = '';
+
+             if (nome.value != "") {
+               if( nome.value.toLowerCase().trim() == 'que horas são?' ||  nome.value.toLowerCase().trim() == 'que horas sao'   ){
+                 data = new Date();
+                 horas = data.getHours();
+                 min = data.getMinutes();
+                     artyom.say("Agora são,"+ horas + "horas e "+ min + " minutos "  );
+                     bot = "Agora são,"+ horas + ": "+ min + " minutos";
+
+
+               }else if( nome.value.toLowerCase().trim().match( 'pesquisar por' )  ){
+                 var palavras = nome.value.trim().split(" ");
+                  tamanho = palavras.length;
+                  var tx = '';
+                     for( i =2; i < palavras.length; i++ ){
+                       tx += " "+ palavras[i];
+                     }
+                     artyom.say("Ok, pesquisando por: " +  tx );
+                     bot = ("Ok, pesquisando por: " + palavras[tamanho-1]);
+                     window.open('https://www.google.com.br/search?q='+ tx  )
+               }
+               else if( nome.value.toLowerCase().trim().match( 'toque' )   ){
+                 var palavras = nome.value.trim().split(" ");
+            		tamanho = palavras.length;
+            		//alert(palavras[tamanho-1]);
+                var tx = '';
+                   for( i =1; i < palavras.length; i++ ){
+                     tx += " "+ palavras[i];
+                   }
+                     //artyom.say("Ok, tocando a musica:" + palavras[tamanho-1]);
+                     artyom.say("Ok, tocando a musica:" + tx);
+                     bot = ("Ok, tocando a musica:" + tx );
+                     window.open('https://www.youtube.com/results?search_query='+tx  )
+
+               }else if( nome.value.toLowerCase().trim()  == 'musica qualquer'  ){
+                     artyom.say("Ok, tocando uma musica qualquer");
+                     bot = ("Ok, tocando uma musica qualquer");
+                     window.open('https://www.youtube.com/watch?v=J56VVtlZCGE');
+
+               }
+               else if( nome.value.toLowerCase().trim()  == 'conte uma piada'  ){
+                     artyom.say("Ogaroto apanhou da vizinha, e a mãe furiosa foi tomar satisfação: Por que a senhora bateu no meu filho? Ele foi mal-educado, e me chamou de gorda. E a senhora acha que vai emagrecer batendo nele?");
+                     bot = ("O garoto apanhou da vizinha, e a mãe furiosa foi tomar satisfação: Por que a senhora bateu no meu filho? Ele foi mal-educado, e me chamou de gorda. E a senhora acha que vai emagrecer batendo nele?");
+
+
+               }
+               else if( nome.value.toLowerCase().trim()  == 'voce é um robo?'  ||
+               nome.value.toLowerCase().trim()  == 'voce é um boot'  || nome.value.toLowerCase().trim()  == 'vc e um boot'  ||
+               nome.value.toLowerCase().trim()  == 'voce é um boot?'  ||
+                         nome.value.toLowerCase().trim()  == 'voce é um robo' ||
+                       nome.value.toLowerCase().trim()  == 'voce e um robo?' ){
+                     artyom.say("kkk,   minha barriga  esta doendo de tanto ri.");
+                     artyom.say("Claro que  que eu não sou um robo");
+                     bot = ("kkk kkk kkk, minha barriga doe de tanto ri, obvio que eu não sou um robo");
+
+
+               }
+               else if( nome.value.toLowerCase().trim().match('merda')  ||
+                         nome.value.toLowerCase().trim().match('foder') ||
+                         nome.value.toLowerCase().trim().match('fode') ||
+                         nome.value.toLowerCase().trim().match('caralho') ){
+                     artyom.say("Opa, estou sentindo uma raiva fluindo de vo ce, por favor não fale mais isto.");
+                     bot = ("Opa, estou sentindo uma raiva fluindo de voce, por favor não fale mais isto.");
+
+
+               }
+
+               else if( nome.value.toLowerCase().trim()  == 'calculadora cidadao'  ){
+                     artyom.say("Ok, pesquisando por, calculadora cidadão");
+                     bot = ("Ok, pesquisando por, calculadora cidadao");
+                     window.open('https://www3.bcb.gov.br/CALCIDADAO/publico/exibirFormCorrecaoValores.do?method=exibirFormCorrecaoValores'  )
+               }
+               else if( nome.value.toLowerCase().trim()  == 'oi' ||
+               nome.value.toLowerCase().trim()  == 'ola' ||nome.value.toLowerCase().trim()  == 'olá' ||
+               nome.value.toLowerCase().trim()  == 'e ai' || nome.value.toLowerCase().trim()  == 'eai'
+               ){
+                     artyom.say("Oi,");
+                     artyom.say("Qual o seu nome?");
+                     bot = ("Oi,  Qual é o seu nome?");
+               }
+               else if( nome.value.toLowerCase().trim()  == 'preciso saber da formula de bascara' ){
+                     artyom.say("Ok ,a fórmula de bascaraé um método resolutivo para equações do segundo grau utilizado para encontrar raízes a partir dos coeficientes da equação cujo nome homenageia o grande matemático indiano que a demonstrou. Vo ce quer ver um vídeo?" );
+                     bot = ("Ok ,a fórmula de Bhaskara é um método resolutivo para equações do segundo grau utilizado para encontrar raízes a partir dos coeficientes da equação cujo nome homenageia o grande matemático indiano que a demonstrou. Você quer ver um vídeo?" );
+
+               } else if( nome.value.toLowerCase().trim()  == 'paulo' || nome.value == 'Paulo'  ){
+                      artyom.say("ola" + nome.value + ", em que posso ajudar?" );
+                      bot = ("ola, " + nome.value + ", em que posso posso ajudar?" );
+                }
+                else if( nome.value.toLowerCase().trim()  == 'sim'  ){
+                      artyom.say("Ok, vamos la.");
+                      bot = ("Ok,vamos la");
+                      window.open('https://www.youtube.com/watch?v=nTkRBHi6qi0'  )
+                }
+
+               else if( nome.value.toLowerCase().trim()  == 'quem é voce'  ){
+                     artyom.say("EU, me chamo Malu, e estou aqui para te ajudar");
+                     bot = ("EU, me chamo Malu, e estou aqui para te ajudar");
+               }
+               else  if( nome.value.toLowerCase().trim()  == 'ajudar em que?'  ){
+                     artyom.say("Matema tica, vou te ensinar como é que se faz uma soma de dois mais dois");
+                     bot = ("Matematica, vou te ensinar como é que se faz uma soma de dois mais dois");
+               }
+
+               else  if( nome.value.toLowerCase().trim()  == 'entao quanto e dois mais dois?'  ){
+                     artyom.say("É claro que é, Oito. Brincadeira kkk,kkk, a resposta correta é quatro");
+                     bot = ("É claro que é, Oito, brincadeira kkk,kkk, a resposta correta é quatro");
+               }else  if( nome.value.toLowerCase().trim()  == 'fale sobre voce'  ){
+                     artyom.say("Eu, sou uma menina muito intelegente, que posso te auxiliar em muitas coisas");
+                     bot = ("Eu, sou uma menina muito intelegente, que posso te auxiliar em muitas coisas");
+               }else  if( nome.value.toLowerCase().trim()  == 'quem é o paulo'  ){
+                     artyom.say("O paulo, é um estudante de análise e desenvolvimento de sistemas, ele estuda na faculdade SENAQUE");
+                     bot =("O paulo, é um estudante de análise e desenvolvimento de sistemas, ele estuda na faculdade SENAC");
+               }
+               else{
+                     artyom.say("Desculpe, mas para esta questão terei que responder mais tarde..");
+                     bot = ("Desculpe, mas para esta questão terei que responder mais tarde..");
+               }
+
+
+
+
+
+
+                 //alert('Obrigado sr(a) ' + nome.value + ' os seus dados foram encaminhados com sucesso');
+             }else{
+               artyom.say("Por favor, digite alguma coisa para que possamos iniciar a conversa");
+             }
+
+
+             var txt3 = document.createElement("P");
+            if( nome.value.toLowerCase().trim()  == 'quem é o paulo'){
+              txt3.innerHTML = "<hr /><blockquote><span class=\"blue-text\"> <b>Você:</b> " + nome.value + "</span><br /><span class=\"green-text\">&nbsp;&nbsp;<b>Malu:</b> " +bot  + "<br /><img  class=\"center\" src=\"https://avatars3.githubusercontent.com/u/20663104?v=3&s=460\" hight=\"120\" width=\"120\" /> </blockquote>";               // Create text with DOM
+
+            }else if(nome.value.toLowerCase().trim().match('merda')  ||
+                      nome.value.toLowerCase().trim().match('foder') ||
+                      nome.value.toLowerCase().trim().match('fode') ||
+                      nome.value.toLowerCase().trim().match('caralho')  ) {
+                      txt3.innerHTML = "<hr /><blockquote><span class=\"blue-text\"> <b>Você:</b> ** BOCA SUJA ** </span><br /><span class=\"green-text\">&nbsp;&nbsp;<b>Malu:</b> " +bot + " </blockquote>" ;               // Create text with DOM
+
+          }else{
+              txt3.innerHTML = "<hr /><blockquote><span class=\"blue-text\"> <b>Você:</b> " + nome.value + "</span><br /><span class=\"green-text\">&nbsp;&nbsp;<b>Malu:</b> " +bot + " </blockquote>" ;               // Create text with DOM
+
+            }
+
+              $("#aqui").append(txt3);
+              nome.value = "";
+
+         }
+
+
+
+           </script>
+
+           <div class="fixed-action-btn horizontal">
+              <a href="#modal1" class="btn-floating btn-large red">
+                <i class="large material-icons">info</i>
+              </a>
+
+            </div>
+
+
+
+           <!-- Modal Structure -->
+           <div id="modal1" class="modal">
+             <div class="modal-content">
+               <h4>Algumas coisas legais</h4>
+               <div class="divider"></div>
+                <div class="row">
+                  <div class="section">
+                    <h5>Tocar Musica</h5>
+                    <p>Toque  DIGA O NOME DA MUSICA</p>
+                  </div>
+                  <div class="section">
+                    <h5>Tocar musica qualquer</h5>
+                    <p>Musica qualquer</p>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="section">
+                    <h5>Horas</h5>
+                    <p>Que horas são?</p>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="section">
+                    <h5>Pesquisar </h5>
+                    <p>Pesquise por DIGA O QUE QUER PESQUISAR</p>
+                  </div>
+                </div>
+             </div>
+             <div class="modal-footer">
+               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sair</a>
+             </div>
+           </div>
+
+
+
+     <!--Import jQuery before materialize.js-->
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+     <script type="text/javascript" src="js/init.js"></script>
+   </body>
+ </html>
