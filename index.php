@@ -150,10 +150,11 @@
 
     <!-- ROBO -->
     <ul id="slide-out" class="side-nav">
-      <li style="height:600px">
+      <li style="height:550px">
       <div class="row">
-        <div class="content" >
-          <div class="left chip gray black-text" style="padding-left:8px;">
+        <div class="content"  style="  height: 557px; overflow: scroll; border:1px solid blue">
+          <div id="resp"></div>
+          <!-- <div class="left chip gray black-text" style="padding-left:8px;">
                 Ola, tudo bem?
           </div><br />
           <div class="right chip blue white-text" style="padding-right:8px">
@@ -164,7 +165,7 @@
           </div><br />
           <div class="right chip blue white-text" style="padding-right:8px">
                 Preciso de grana
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -173,16 +174,18 @@
       <li><div class="divider"></div></li>
       <li>
         <div class="row">
-         <form class="col s12">
+         <form class="col s12" id="contactform" method="post" >
            <div class="row">
              <div class="input-field col s12">
-
-               <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-               <label for="icon_prefix2">Escreva aqui</label>
-             </div>
+               <textarea id="texto" class="materialize-textarea" placeholder="Digite aqui"  min="1" maxlength="35" max="35" data-length="35"></textarea>
+               <label for="texto"></label>
+             </div><br />
+              <button  type="submit" id="enviar" class="btn btn-defaul left">Ok</button>
            </div>
+
          </form>
        </div>
+
     </li>
     </ul>
     <!-- # ROBO -->
